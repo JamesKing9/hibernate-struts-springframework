@@ -9,53 +9,53 @@ import model.Person;
 import service.PersonService;
 
 public class PersonAction implements Preparable {
-    private PersonService service;
-    private List<Person> persons;
-    private Person person;
-    private Integer id;
+	private PersonService service;
+	private List<Person> persons;
+	private Person person;
+	private Integer id;
 
-    public PersonAction(PersonService service) {
-        this.service = service;
-    }
+	public PersonAction(PersonService service) {
+		this.service = service;
+	}
 
-    public String execute() {
-        this.persons = service.findAll();
-        return Action.SUCCESS;
-    }
+	public String execute() {
+		this.persons = service.findAll();
+		return Action.SUCCESS;
+	}
 
-    public String save() {
-        this.service.save(person);
-        this.person = new Person();
-        return execute();
-    }
+	public String save() {
+		this.service.save(person);
+		this.person = new Person();
+		return execute();
+	}
 
-    public String remove() {
-        service.remove(id);
-        return execute();
-    }
+	public String remove() {
+		service.remove(id);
+		return execute();
+	}
 
-    public List<Person> getPersons() {
-        return persons;
-    }
+	public List<Person> getPersons() {
+		return persons;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void prepare() throws Exception {
-        if (id != null)
-            person = service.find(id);
-    }
+	public void prepare() throws Exception {
+		if (id != null)
+			person = service.find(id);
+	}
 
-    public Person getPerson() {
-        return person;
-    }
+	public Person getPerson() {
+		return person;
+	}
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 }
